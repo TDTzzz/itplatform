@@ -1,7 +1,7 @@
 <template>
     <button
             class="btn btn-default"
-            v-bind:class="{'btn-primary': voted}"
+            v-bind:class="{'btn-success': voted}"
             v-text="text"
             v-on:click="vote"
     ></button>

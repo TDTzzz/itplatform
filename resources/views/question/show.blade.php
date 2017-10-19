@@ -2,24 +2,31 @@
 
 @section('content')
     @include('vendor.ueditor.assets')
+
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{$question->title}}</div>
-                    @foreach($question->topics as $topic)
-                        <a class="topic" href="/topic/{{$topic->id}}">{{$topic->name}}</a>
-                    @endforeach
+                    <div class="panel-heading" >
+                        <div style="font-size: 30px;">
+                            {{$question->title}}
+                        </div>
+                        @foreach($question->topics as $topic)
+                            <a class="topic2" href="/topic/{{$topic->id}}">{{$topic->name}}</a>
+                        @endforeach
+                        <span onclick="window.location.href='/user/{{$question->user->id}}'" style="cursor: pointer;color: #4c9f2d;font-weight: bold;padding-left: 10px;">{{$question->user->name}}</span>
+                        <span style="color: #979797">于{{$question->created_at}}创建</span>
+                    </div>
                     <div class="panel-body content">
                         {!!$question->body!!}
                     </div>
                     <div class="actions">
                         @if(Auth::check() && Auth::user()->owns($question))
-                            <span class="edit"><a href="/question/{{$question->id}}/edit">编辑</a></span>
+                            <span class="edit"><a href="/question/{{$question->id}}/edit" style="text-decoration: none;color: #8c8c8c">编辑</a></span>
                             <form action="/question/{{$question->id}}" method="post" class="delete-form">
                                 {{method_field('DELETE')}}
                                 {{csrf_field()}}
-                                <button class="button is-naked delete-button">删除</button>
+                                <button class="button is-naked delete-button" style="text-decoration: none;color: #8c8c8c">删除</button>
                             </form>
                         @endif
                         <comments type="question" model="{{$question->id}}" count="{{$question->comments()->count()}}"></comments>
@@ -29,12 +36,12 @@
             <div class="col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2>{{$question->followers_count}}</h2>
-                        <span>关注者</span>
+                        <h2 style="text-align: center">{{$question->followers_count}}</h2>
+                        <div style="text-align: center;font-size: large">关注者</div>
                     </div>
                     <div class="panel-body">
                         {{--<a href="/question/{$question->id}/follow" class="btn btn-block">关注该问题</a>--}}
-                        <question-follow question="{{$question->id}}"></question-follow>
+                        <question-follow style="margin-left: 36%;" question="{{$question->id}}"></question-follow>
                     </div>
                 </div>
             </div>
@@ -44,7 +51,7 @@
             <div class="col-md-8 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        几个答案
+                        {{$question->answers->count()}}个答案
                     </div>
                     <div class="panel-body">
                         @foreach($question->answers as $answer)
@@ -54,7 +61,7 @@
                                 </div>
                                 <div class="media-body">
                                     <div class="media-heading">
-                                        <a href="">{{$answer->user->name}}</a>
+                                        <a href="/user/{{$answer->user->id}}">{{$answer->user->name}}</a>
                                     </div>
                                     {!! $answer->body !!}
                                 </div>
@@ -69,9 +76,9 @@
                     {!! csrf_field() !!}
                     <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
                         <label for="body">描述</label>
-                        {{--<script id="container" name="body" style="height:120px;" type="text/plain">--}}
-                            {{--{!! old('body') !!}--}}
-                        {{--</script>--}}
+                        <script id="container" name="body" style="height:120px;" type="text/plain">
+                            {!! old('body') !!}
+                        </script>
                         @if ($errors->has('body'))
                         <span class="help-block">
                             <strong>{{ $errors->first('body') }}</strong>
@@ -102,19 +109,23 @@
                             <div class="user-statics">
                                 <div class="statics-item text-center">
                                     <div class="statics-text">问题</div>
-                                    <div class="statics-count">{{$question->user->questions_count}}</div>
+                                    <div class="statics-count">{{$question->user->questions->count()}}</div>
                                 </div>
                                 <div class="statics-item text-center">
                                     <div class="statics-text">回答</div>
-                                    <div class="statics-count">{{$question->user->answers_count}}</div>
+                                    <div class="statics-count">{{$question->user->answers->count()}}</div>
                                 </div>
                                 <div class="statics-item text-center">
                                     <div class="statics-text">关注者</div>
                                     <div class="statics-count">{{$question->user->followers_count}}</div>
                                 </div>
                             </div>
+                             @if(Auth::user()->id!=$question->user->id)
                             <user-follow user="{{$question->user->id}}"></user-follow>
                             <send-message user="{{$question->user->id}}"></send-message>
+                             @else
+                                <div style="text-align: center;border-top: 1px solid #979797;padding-top: 5px;">这就是我</div>
+                            @endif
                         </div>
                     </div>
                 </div>

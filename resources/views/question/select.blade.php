@@ -9,7 +9,7 @@
                     <div class="media" style="padding-bottom: 10px;border-bottom: 1px solid #979797;height: 60px">
                         <div class="media-left" style="@if($question->answers->count()===0) background-color: #ad3a37; @else background-color: #009a61; @endif color: #fff;height: 80%">
                             {{--<a href="">--}}
-                                {{--<img style="width:80px;height: 80px; border-radius:50%; overflow:hidden;" src="{{$question->user->avatar}}" alt="{{$question->user->name}}">--}}
+                            {{--<img style="width:80px;height: 80px; border-radius:50%; overflow:hidden;" src="{{$question->user->avatar}}" alt="{{$question->user->name}}">--}}
                             {{--</a>--}}
                             <div style="width: 40px;height: 55px;text-align: center;padding-top: 5px">
                                 {{$question->answers->count()}}
@@ -18,7 +18,7 @@
                         </div>
                         <div class="media-body" style="padding-left: 30px">
                             <h4 class="media-heading" style="font-size: small">
-                                <a href="/user/{{$question->user->id}}">{{$question->user->name}}</a>
+                                <a href="#">{{$question->user->name}}</a>
                                 发布于{{$question->updated_at}}
                             </h4>
                             <div>
@@ -27,7 +27,7 @@
                                 </a>
                                 <div class="media-right" style="display: inline-block">
                                     @foreach($question->topics as $topic)
-                                        <a class="topic2" href="/topic/{{$topic->name}}">{{$topic->name}}</a>
+                                        <a class="topic2" href="/topic/{{$topic->id}}">{{$topic->name}}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -35,11 +35,7 @@
 
                     </div>
                 @endforeach
-                    <div style="text-align: center;padding-top: 20px;">
-                        {{ $questions->links() }}
-                    </div>
             </div>
-
         </div>
 
     </div>

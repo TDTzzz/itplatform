@@ -11,7 +11,7 @@
                             <div class="media {{$messageGroup->first()->isHasRead()?'unread':''}}">
                                 <div class="media-left">
                                     <a href="#">
-                                        <img width="100px" src="{{ $messageGroup->first()->fromUser->avatar }}" alt="">
+                                        <img style="border-radius: 50%" width="100px" src="{{ $messageGroup->first()->fromUser->avatar }}" alt="">
                                     </a>
                                 </div>
                                 <div class="media-body">

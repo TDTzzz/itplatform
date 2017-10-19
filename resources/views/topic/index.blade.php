@@ -3,13 +3,23 @@
 @section('content')
     <div class="container">
 
-        <div class="row" style="margin-top: 30px;">
+        <div class="row" style="margin: 30px 0 20px 0;padding-bottom: 10px;border-bottom: 1px solid #979797;">
+            <div class="col-md-9 col-md-offset-1">
+                搜索到的话题:
+                @foreach($topics as $topic)
+                    <span style="padding: 0 5px 0 5px;font-size: 25px;">
+                        {{$topic->name}}
+                    </span>
+                @endforeach
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-9 col-md-offset-1">
                 @foreach($questions as $question)
                     <div class="media" style="padding-bottom: 10px;border-bottom: 1px solid #979797;height: 60px">
                         <div class="media-left" style="@if($question->answers->count()===0) background-color: #ad3a37; @else background-color: #009a61; @endif color: #fff;height: 80%">
                             {{--<a href="">--}}
-                                {{--<img style="width:80px;height: 80px; border-radius:50%; overflow:hidden;" src="{{$question->user->avatar}}" alt="{{$question->user->name}}">--}}
+                            {{--<img style="width:80px;height: 80px; border-radius:50%; overflow:hidden;" src="{{$question->user->avatar}}" alt="{{$question->user->name}}">--}}
                             {{--</a>--}}
                             <div style="width: 40px;height: 55px;text-align: center;padding-top: 5px">
                                 {{$question->answers->count()}}
@@ -27,7 +37,7 @@
                                 </a>
                                 <div class="media-right" style="display: inline-block">
                                     @foreach($question->topics as $topic)
-                                        <a class="topic2" href="/topic/{{$topic->name}}">{{$topic->name}}</a>
+                                        <a class="topic2" href="/topic/{{$topic->id}}">{{$topic->name}}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -35,11 +45,7 @@
 
                     </div>
                 @endforeach
-                    <div style="text-align: center;padding-top: 20px;">
-                        {{ $questions->links() }}
-                    </div>
             </div>
-
         </div>
 
     </div>

@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','QuestionController@index');
 
 Auth::routes();
 Route::get('email/verify/{token}',['as' => 'email.verify', 'uses' => 'EmailController@verify']);
@@ -29,8 +27,22 @@ Route::post('question/{id}/answer','AnswerController@store');
 Route::get('question/{question}/follow','FollowController@follow');
 
 Route::get('notification','NotificationController@index');
+Route::get('notification/{notification}','NotificationController@show');
 //
 Route::get('inbox','InboxController@index');
 Route::get('inbox/{userId}','InboxController@show');
 Route::post('inbox/{dialogId}/store','InboxController@store');
+
+Route::get('avatar','UserController@avatar');
+Route::post('avatar','UserController@changeAvatar');
+//
+Route::get('user/{id}','UserController@user');
+Route::get('user/{id}/question','UserController@question');
+Route::get('user/{id}/followQuestion','UserController@followQuestion');
+Route::get('user/{id}/followers','UserController@followUser');
+Route::get('user/{id}/followed','UserController@followed');
+//
+Route::post('topic/select','TopicsController@select');
+Route::get('topic/{topic}','TopicsController@show');
+Route::post('question/select','QuestionController@select');
 

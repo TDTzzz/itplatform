@@ -32,6 +32,7 @@ class NewMessageNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
+            'id'=> $this->message->fromUser->id,
             'name' => $this->message->fromUser->name,
             'dialog' => $this->message->dialog_id,
         ];

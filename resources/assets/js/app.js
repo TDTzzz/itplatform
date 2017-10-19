@@ -21,6 +21,7 @@ Vue.component('user-follow', require('./components/UserFollow.vue'));
 Vue.component('user-vote', require('./components/UserVote.vue'));
 Vue.component('send-message', require('./components/SendMessage.vue'));
 Vue.component('comments', require('./components/Comments.vue'));
+Vue.component('change-avatar', require('./components/Avatar.vue'));
 
 const app = new Vue({
     el: '#app'

@@ -12,7 +12,7 @@ class QuestionController extends Controller
 {
     public function index()
     {
-        $questions=Question::published()->latest('updated_at')->with('user')->get();//published是Question类里的scope方法
+        $questions=Question::published()->latest('updated_at')->with('user')->paginate(10);//published是Question类里的scope方法
         return view('question.index',compact('questions'));
     }
     public function create()
@@ -108,5 +108,13 @@ class QuestionController extends Controller
             return redirect('/');
         }
         abort('403','Forbidden');
+    }
+
+    public function select(Request $request)
+    {
+
+        $questions=Question::with('user')->where('title','like','%'.$request->get('question').'%')->get();
+//        $questions=Question::with('user')->first();
+        return view('question.select',compact('questions'));
     }
 }

@@ -18,6 +18,23 @@ a.topic:hover{
     color: #fff;
     text-decoration: none;
 }
+a.topic2{
+    color: #017E66;
+    background: #ebf5f3;
+    padding:1px 10px 0;
+    border-radius: 30px;
+    text-decoration: none;
+    margin:0 5px 5px 0;
+    display: inline-block;
+    white-space:nowrap;
+    cursor: pointer;
+}
+
+a.topic2:hover{
+    background: #017E66;
+    color: #fff;
+    text-decoration: none;
+}
 .button.is-naked {
     background: 0 0;
     border: none;
@@ -66,4 +83,24 @@ a.topic:hover{
 
 .notifications.unread {
     background: #fff9ea;
+}
+
+a.title:hover{
+    color: #017E66 !important;
+}
+
+a.user-nav{
+    color: #979797 !important;
+}
+a.user-nav:hover{
+    color: #009A61 !important;
+    background: #f0f5f3 !important;
+}
+.user-active a{
+    color: #009A61 !important;
+    background: #f0f5f3 !important;
+}
+
+.small-num{
+    display: block;float: right;color: #a9a9a9;
 }

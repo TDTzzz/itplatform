@@ -3,6 +3,7 @@
 
         <button
                 class="button is-naked delete-button"
+                style="padding-left:10px;text-decoration: none;color: #8c8c8c;"
                 @click="showCommentsForm"
                 v-text="text"
         ></button>

@@ -21,12 +21,12 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="#">
-                                            <img width="100px" src="{{ $message->fromUser->avatar }}" alt="">
+                                            <img style="border-radius: 50%" width="60px" src="{{ $message->fromUser->avatar }}" alt="">
                                         </a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="media-heading">
-                                            <a href="#">
+                                            <a href="/user/{{ $message->fromUser->id }}">
                                                 {{ $message->fromUser->name }}
                                             </a>
                                         </h4>

@@ -41,6 +41,7 @@ class NewUserNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
+            'id'=>\Auth::guard('api')->user()->id,
           'name'=>\Auth::guard('api')->user()->name
         ];
     }

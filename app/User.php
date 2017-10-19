@@ -99,4 +99,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class,'to_user_id');
     }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }
