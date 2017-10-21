@@ -26,54 +26,63 @@
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top" style="padding-bottom: 20px;box-shadow: 5px 5px 5px #c9c9c9;">
             <div class="container">
-                <div class="navbar-header">
+                <div class="navbar-header col-md-2">
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}" style="padding-top: 17px;font-size: 25px;font-weight: bold">
                         {{--{{ config('app.name') }}--}}
                         <span onclick="window.location.href='/'" style="color: #01ad8c">iT-</span>Plat<span style="color: #01ad8c">Form</span>
                     </a>
+                    <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-
-                    <ul class="nav navbar-nav" style="width: 70%">
-                        <div class="col-lg-4 col-lg-offset-2" style="padding-top:10px ">
-                            <form action="/topic/select" method="post" style="margin:0px; padding:0px;">
-                                {{csrf_field()}}
-                                <div class="input-group">
-                                    <input type="text" name="topic" class="form-control" placeholder="搜索话题（Topic）...">
-                                    <span class="input-group-btn">
+                    <div class="col-md-7" style="padding: 0">
+                        <ul class="nav navbar-nav" style="">
+                            <div class="col-lg-4 col-xs-6" style="padding-top:10px ">
+                                <form action="/topic/select" method="post" style="margin:0px; padding:0px;">
+                                    {{csrf_field()}}
+                                    <div class="input-group">
+                                        <input type="text" name="topic" class="form-control" placeholder="搜索话题（Topic）...">
+                                        <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Go!</button>
                                     </span>
-                                </div><!-- /input-group -->
-                            </form>
+                                    </div><!-- /input-group -->
+                                </form>
 
-                        </div><!-- /.col-lg-6 -->
-                        <div class="col-lg-4" style="padding-top:10px ">
-                            <form action="/question/select" method="post" style="margin:0px; padding:0px;">
-                            {{csrf_field()}}
-                            <div class="input-group">
-                                    <input type="text" name="question" class="form-control" placeholder="搜索问题（Question）...">
-                                    <span class="input-group-btn">
+                            </div><!-- /.col-lg-6 -->
+                            <div class="col-lg-5 col-xs-6" style="padding-top:10px ">
+                                <form action="/question/select" method="post" style="margin:0px; padding:0px;">
+                                    {{csrf_field()}}
+                                    <div class="input-group">
+                                        <input type="text" name="question" class="form-control" placeholder="搜索问题（Question）...">
+                                        <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Go!</button>
                                     </span>
-                            </div><!-- /input-group -->
-                            </form>
+                                    </div><!-- /input-group -->
+                                </form>
 
-                        </div><!-- /.col-lg-6 -->
-                        <a class="btn btn-success" style="margin-top: 10px;font-weight: bold;float: right" href="/question/create">&nbsp;提问题&nbsp;</a>
-                    </ul>
+                            </div><!-- /.col-lg-6 -->
+                            <a class="btn btn-success col-md-2 col-xs-12" style="margin-top: 10px;font-weight: bold;" href="/question/create">&nbsp;提问题&nbsp;</a>
+                        </ul>
+                    </div>
+
 
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right" style="width: 15%">
+                    <ul class="nav navbar-nav navbar-right col-md-3" style="">
                         <!-- Authentication Links -->
-                        <span class="glyphicon glyphicon-bell" style="cursor: pointer;margin-left: 15px;margin-top: 15px;line-height: 28px;font-size: 25px" onclick="window.location.href='/notification'"></span>
+                        <span class="glyphicon glyphicon-bell col-xs-3" style="cursor: pointer;margin-top: 15px;line-height: 24px;font-size: 25px" onclick="window.location.href='/notification'"></span>
                         @guest
-                            <li><a href="{{ route('login') }}">登录</a></li>
-                            <li><a href="{{ route('register') }}">注册</a></li>
+                            <li class="col-md-4 col-xs-4"><a href="{{ route('login') }}">登录</a></li>
+                            <li class="col-md-4 col-xs-4"><a href="{{ route('register') }}">注册</a></li>
                         @else
                             <li class="dropdown" style="float: right">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

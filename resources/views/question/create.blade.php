@@ -4,6 +4,8 @@
     @include('vendor.ueditor.assets')
     <div class="container">
         <div class="row">
+            @if(Auth::check())
+
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">发布问题</div>
@@ -33,6 +35,9 @@
                     </div>
                 </div>
             </div>
+            @else
+                <a href="/login" class="btn btn-success btn-block" style="margin-top: 100px">请先登录</a>
+            @endif
         </div>
     </div>
 
@@ -83,5 +88,10 @@
                                 });
                             });
                                     </script>
+
+
+
+
+
 @endsection
 @endsection

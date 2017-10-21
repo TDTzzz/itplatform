@@ -120,11 +120,15 @@
                                     <div class="statics-count">{{$question->user->followers_count}}</div>
                                 </div>
                             </div>
-                             @if(Auth::user()->id!=$question->user->id)
+                            @if(Auth::check())
+                                @if(Auth::user()->id!=$question->user->id)
                             <user-follow user="{{$question->user->id}}"></user-follow>
-                            <send-message user="{{$question->user->id}}"></send-message>
-                             @else
+                                <send-message user="{{$question->user->id}}"></send-message>
+                                    @else
                                 <div style="text-align: center;border-top: 1px solid #979797;padding-top: 5px;">这就是我</div>
+                                @endif
+                            @else
+                                <a href="#" class="btn btn-success btn-block">请先登录</a>
                             @endif
                         </div>
                     </div>

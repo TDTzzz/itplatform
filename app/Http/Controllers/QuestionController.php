@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
+
     public function index()
     {
         $questions=Question::published()->latest('updated_at')->with('user')->paginate(10);//published是Question类里的scope方法
