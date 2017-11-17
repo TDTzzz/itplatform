@@ -12,7 +12,7 @@
                             {{$question->title}}
                         </div>
                         @foreach($question->topics as $topic)
-                            <a class="topic2" href="/topic/{{$topic->id}}">{{$topic->name}}</a>
+                            <a class="topic2" href="/topic/{{$topic->name}}">{{$topic->name}}</a>
                         @endforeach
                         <span onclick="window.location.href='/user/{{$question->user->id}}'" style="cursor: pointer;color: #4c9f2d;font-weight: bold;padding-left: 10px;">{{$question->user->name}}</span>
                         <span style="color: #979797">于{{$question->created_at}}创建</span>
