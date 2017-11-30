@@ -133,9 +133,12 @@
         </nav>
         <div class="container">
             @include('flash::message')
+            @yield('content')
         </div>
 
-        @yield('content')
+        {{--@yield('content')--}}
+
+        @include('layouts._footer')
     </div>
 
     <!-- Scripts -->
