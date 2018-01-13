@@ -3,7 +3,6 @@
 
 @section('content')
     @include('vendor.ueditor.assets')
-
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-1">
@@ -19,8 +18,9 @@
                         <span style="color: #979797">于{{$post->created_at}}创建</span>
                     </div>
                     <div class="panel-body content">
-                        {!! Chenhua\MarkdownEditor\Facades\MarkdownEditor::parse($post->body) !!}
+                        {{--{!! \Chenhua\MarkdownEditor\Facades\MarkdownEditor::parse($post->body) !!}--}}
                         {{--{!! MarkdownEditor::parse($post->body) !!}--}}
+                        {!! $post->body !!}
                     </div>
                     <div class="actions">
                         @if(Auth::check() && Auth::user()->owns($post))

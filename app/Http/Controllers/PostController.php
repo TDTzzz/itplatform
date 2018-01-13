@@ -7,6 +7,7 @@ use App\Post;
 use App\Comment;
 use Auth;
 use Illuminate\Http\Request;
+use Chenhua\MarkdownEditor\MarkdownEditor;
 
 class PostController extends Controller
 {
@@ -25,6 +26,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post=Post::where('id',$id)->first();
+        $post['body']=MarkdownEditor::parse($post['body']);
 //        dd($post->comments);
 
         return view('post.show',compact('post'));
