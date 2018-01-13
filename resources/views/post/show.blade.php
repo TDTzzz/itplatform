@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -18,7 +19,8 @@
                         <span style="color: #979797">于{{$post->created_at}}创建</span>
                     </div>
                     <div class="panel-body content">
-                        {!! MarkdownEditor::parse($post->body) !!}
+                        {!! Chenhua\MarkdownEditor\Facades\MarkdownEditor::parse($post->body) !!}
+                        {{--{!! MarkdownEditor::parse($post->body) !!}--}}
                     </div>
                     <div class="actions">
                         @if(Auth::check() && Auth::user()->owns($post))
