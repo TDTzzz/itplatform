@@ -8,6 +8,6 @@
     {{--</div>--}}
 {{--</footer>--}}
 
-<div class="container" style="height: 60px;line-height: 60px;">
-    <a href="http://www.miitbeian.gov.cn " style="color: #000;float: right" target="_blank">备案号:鄂ICP备17028068号-1</a>
-</div>
+{{--<div class="container" style="height: 60px;line-height: 60px;">--}}
+    {{--<a href="http://www.miitbeian.gov.cn " style="color: #000;float: right" target="_blank">备案号:鄂ICP备17028068号-1</a>--}}
+{{--</div>--}}

@@ -45,8 +45,16 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <div class="col-md-7" style="padding: 0">
-                        <ul class="nav navbar-nav" style="">
-                            <div class="col-lg-4 col-xs-6" style="padding-top:10px ">
+                        <ul class="nav navbar-nav" >
+                            <div class="col-md-3" style="height: 50px">
+                                <div style="display: inline-block;text-align: center;line-height: 52px;font-size: large;font-weight: bold;width: 40%">
+                                    <a href="/" style="color: #636b6f;text-decoration: none">问题</a>
+                                </div>
+                                <div style="display: inline-block;text-align: center;line-height: 52px;font-size: large;font-weight: bold;width: 40%">
+                                    <a href="/post" style="color: #636b6f;text-decoration: none">文章</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-6" style="padding-top:10px ">
                                 <form action="/topic/select" method="post" style="margin:0px; padding:0px;">
                                     {{csrf_field()}}
                                     <div class="input-group">
@@ -58,19 +66,20 @@
                                 </form>
 
                             </div><!-- /.col-lg-6 -->
-                            <div class="col-lg-5 col-xs-6" style="padding-top:10px ">
-                                <form action="/question/select" method="post" style="margin:0px; padding:0px;">
-                                    {{csrf_field()}}
-                                    <div class="input-group">
-                                        <input type="text" name="question" class="form-control" placeholder="搜索问题（Question）...">
-                                        <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit">Go!</button>
-                                    </span>
-                                    </div><!-- /input-group -->
-                                </form>
+                            {{--<div class="col-lg-5 col-xs-6" style="padding-top:10px ">--}}
+                                {{--<form action="/question/select" method="post" style="margin:0px; padding:0px;">--}}
+                                    {{--{{csrf_field()}}--}}
+                                    {{--<div class="input-group">--}}
+                                        {{--<input type="text" name="question" class="form-control" placeholder="搜索问题（Question）...">--}}
+                                        {{--<span class="input-group-btn">--}}
+                                    {{--<button class="btn btn-default" type="submit">Go!</button>--}}
+                                    {{--</span>--}}
+                                    {{--</div><!-- /input-group -->--}}
+                                {{--</form>--}}
 
-                            </div><!-- /.col-lg-6 -->
+                            {{--</div><!-- /.col-lg-6 -->--}}
                             <a class="btn btn-success col-md-2 col-xs-12" style="margin-top: 10px;font-weight: bold;" href="/question/create">&nbsp;提问题&nbsp;</a>
+                            <a class="btn btn-success col-md-2 col-xs-12" style="margin-top: 10px;margin-left:10px;font-weight: bold;" href="/post/create">发文章</a>
                         </ul>
                     </div>
 

@@ -45,4 +45,10 @@ Route::get('user/{id}/followed','UserController@followed');
 Route::post('topic/select','TopicsController@select');
 Route::get('topic/{topic}','TopicsController@show');
 Route::post('question/select','QuestionController@select');
+//文章模块
+Route::resource('post','PostController',['names'=>[
+    'create'=>'post.create',
+    'show'=>'post.show',
+]]);
+Route::post('post/{id}/comment','PostController@comment');
 

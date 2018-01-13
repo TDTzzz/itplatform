@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Post;
 use App\Question;
 use App\Answer;
 use Illuminate\Http\Request;
@@ -23,6 +24,13 @@ class CommentController extends Controller
         return $comments->comments;
     }
 
+    public function post($id)
+    {
+        $comments=Post::with('comments','comments.user')->where('id',$id)->first();
+
+        return $comments->comments;
+    }
+
     public function store()
     {
         $model=$this->getModelNameFromType(request('type'));
@@ -39,4 +47,6 @@ class CommentController extends Controller
     {
         return $type==='question'?'App\Question':'App\Answer';
     }
+
+
 }
