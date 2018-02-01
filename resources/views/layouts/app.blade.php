@@ -15,6 +15,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+    @yield('styles')
     <script>
         @if(Auth::check())
             window.Zhihu={

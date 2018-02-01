@@ -5,7 +5,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-8 col-md-offset-1 topic-content">
                 <div class="panel panel-default">
                     <div class="panel-heading" >
                         <div style="font-size: 30px;">
@@ -17,7 +17,7 @@
                         <span onclick="window.location.href='/user/{{$question->user->id}}'" style="cursor: pointer;color: #4c9f2d;font-weight: bold;padding-left: 10px;">{{$question->user->name}}</span>
                         <span style="color: #979797">于{{$question->created_at}}创建</span>
                     </div>
-                    <div class="panel-body content">
+                    <div class="panel-body topic-body">
                         {!!$question->body!!}
                     </div>
                     <div class="actions">
@@ -76,10 +76,11 @@
                     {!! csrf_field() !!}
                     <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
                         <label for="body">描述</label>
-                        <script id="container" name="body" style="height:120px;" type="text/plain">
-                            {!! old('body') !!}
-                        </script>
-                        @if ($errors->has('body'))
+                        {{--<script id="container" name="body" style="height:120px;" type="text/plain">--}}
+                            {{--{!! old('body') !!}--}}
+                        {{--</script>--}}
+                        <textarea name="body" class="form-control" id="editor" rows="3" height="100px;" placeholder="请回答。" required>{{ old('body') }}</textarea>
+                    @if ($errors->has('body'))
                         <span class="help-block">
                             <strong>{{ $errors->first('body') }}</strong>
                         </span>
@@ -140,12 +141,29 @@
 
 
     </div>
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
+@stop
 @section('js')
-    <!-- 实例化编辑器 -->
-    <script type="text/javascript">
-        var ue = UE.getEditor('container');
-        ue.ready(function() {
-            ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');
+
+    <script type="text/javascript"  src="{{ asset('js/module.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/hotkeys.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/uploader.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/simditor.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+            var editor = new Simditor({
+                textarea: $('#editor'),
+                upload: {
+                    url: '{{ route('question.upload_image') }}',
+                    params: { _token: '{{ csrf_token() }}' },
+                    fileKey: 'upload_file',
+                    connectionCount: 3,
+                    leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+                },
+                pasteImage: true,
+            });
         });
     </script>
 @endsection

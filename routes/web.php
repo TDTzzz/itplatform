@@ -52,3 +52,6 @@ Route::resource('post','PostController',['names'=>[
 ]]);
 Route::post('post/{id}/comment','PostController@comment');
 
+//图片上传
+Route::post('upload_image', 'QuestionController@uploadImage')->name('question.upload_image');
+

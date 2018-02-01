@@ -42,4 +42,6 @@ class TopicsController extends Controller
 //        $topic=Topic::where('name',request('topic'))->first();
 
     }
+
+
 }
