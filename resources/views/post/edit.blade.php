@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('vendor.ueditor.assets')
+    {{--@include('vendor.ueditor.assets')--}}
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
