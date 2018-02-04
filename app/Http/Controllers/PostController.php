@@ -8,6 +8,7 @@ use App\Comment;
 use Auth;
 use Illuminate\Http\Request;
 use Chenhua\MarkdownEditor\MarkdownEditor;
+use App\Handlers\ImageUploadHandler;
 
 class PostController extends Controller
 {
@@ -81,4 +82,71 @@ class PostController extends Controller
         flash('评论成功');
         return back();
     }
+
+    public function uploadImage(Request $request, ImageUploadHandler $uploader)
+    {
+        // 初始化返回数据，默认是失败的
+        $data = [
+            'success'   => false,
+            'msg'       => '上传失败!',
+            'file_path' => ''
+        ];
+        // 判断是否有上传文件，并赋值给 $file
+        if ($file = $request->upload_file) {
+            // 保存图片到本地
+            $result = $uploader->save($request->upload_file, 'post', \Auth::id(), 1024);
+            // 图片保存成功的话
+            if ($result) {
+                $data['file_path'] = $result['path'];
+                $data['msg']       = "上传成功!";
+                $data['success']   = true;
+            }
+        }
+        return $data;
+    }
+
+    public function update(Request $request,$id)
+    {
+        //验证
+        $rules=[
+            'title'=>'required',
+            'body'=>'required'
+        ];
+        $message=[
+            'title.required'=>'标题不能为空',
+            'body.required'=>'内容不能为空'
+        ];
+        $this->validate($request,$rules,$message);
+
+        $post=Post::find($id);
+        $post->update([
+            'title'=>$request->get('title'),
+            'body'=>$request->get('body'),
+        ]);
+        $topics=$this->normalizeTopic($request->get('topics'));
+
+        $post->topics()->sync($topics);
+        return redirect()->route('post.show',[$post->id]);
+
+    }
+
+    public function edit($id)
+    {
+        $post=Post::find($id);
+        if(Auth::user()->owns($post)){
+            return view('post.edit',compact('post'));
+        }
+        return back();
+    }
+    public function destroy($id)
+    {
+        $post=Post::find($id);
+        if (Auth::user()->owns($post)){
+            $post->delete();
+            flash('删除成功');
+            return redirect('/');
+        }
+        abort('403','Forbidden');
+    }
+
 }

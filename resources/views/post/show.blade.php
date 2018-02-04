@@ -5,7 +5,7 @@
     @include('vendor.ueditor.assets')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-9">
                 <div class="panel panel-default">
                     <div class="panel-heading" >
                         <div style="font-size: 30px;">
@@ -24,8 +24,8 @@
                     </div>
                     <div class="actions">
                         @if(Auth::check() && Auth::user()->owns($post))
-                            <span class="edit"><a href="/question/{{$post->id}}/edit" style="text-decoration: none;color: #8c8c8c">编辑</a></span>
-                            <form action="/question/{{$post->id}}" method="post" class="delete-form">
+                            <span class="edit"><a href="/post/{{$post->id}}/edit" style="text-decoration: none;color: #8c8c8c">编辑</a></span>
+                            <form action="/post/{{$post->id}}" method="post" class="delete-form">
                                 {{method_field('DELETE')}}
                                 {{csrf_field()}}
                                 <button class="button is-naked delete-button" style="text-decoration: none;color: #8c8c8c">删除</button>
@@ -39,18 +39,19 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2 style="text-align: center">{{$post->followers_count}}</h2>
-                        <div style="text-align: center;font-size: large">关注者</div>
+                        <div style="text-align: center;font-size: large">收藏者</div>
                     </div>
                     <div class="panel-body">
                         {{--<a href="/question/{$post->id}/follow" class="btn btn-block">关注该问题</a>--}}
-                        <question-follow style="margin-left: 36%;" question="{{$post->id}}"></question-follow>
+                        {{--<question-follow style="margin-left: 36%;" question="{{$post->id}}"></question-follow>--}}
+                        <post-follow style="margin-left: 36%;" post="{{$post->id}}"></post-follow>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-9">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         {{--{{$post->answers->count()}}个答案--}}
@@ -78,10 +79,12 @@
                         <input type="hidden" name="model" value="{{$post->id}}">
                         <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
                             <label for="body">描述</label>
-                            <script id="container" name="body" style="height:120px;" type="text/plain">
-                                {!! old('body') !!}
-                            </script>
-                            @if ($errors->has('body'))
+                            {{--<script id="container" name="body" style="height:120px;" type="text/plain">--}}
+                                {{--{!! old('body') !!}--}}
+                            {{--</script>--}}
+                            <textarea name="body" class="form-control" id="editor" rows="3" height="100px;" placeholder="请回答。" required>{{ old('body') }}</textarea>
+
+                        @if ($errors->has('body'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('body') }}</strong>
                                 </span>
@@ -142,13 +145,29 @@
 
 
                                 </div>
-                                    @section('js')
-                                <!-- 实例化编辑器 -->
-                                <script type="text/javascript">
-                            var ue = UE.getEditor('container');
-                            ue.ready(function() {
-                                ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');
-                            });
-                            </script>
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
+@stop
+@section('js')
+    <script type="text/javascript"  src="{{ asset('js/module.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/hotkeys.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/uploader.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/simditor.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+            var editor = new Simditor({
+                textarea: $('#editor'),
+                upload: {
+                    url: '{{ route('post.upload_image') }}',
+                    params: { _token: '{{ csrf_token() }}' },
+                    fileKey: 'upload_file',
+                    connectionCount: 3,
+                    leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+                },
+                pasteImage: true,
+            });
+        });
+    </script>
 @endsection
 @endsection

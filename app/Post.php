@@ -28,4 +28,8 @@ class Post extends Model
         return $query->where('is_hidden','F');
     }
 
+    public function followers()
+    {
+        return $this->belongsToMany(User::class,'user_post')->withTimestamps();
+    }
 }

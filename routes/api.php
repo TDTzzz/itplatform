@@ -39,6 +39,26 @@ Route::post('/question/follow',function (Request $request){
     return response()->json(['followed'=>true]);
 })->middleware('auth:api');
 
+Route::post('/post/follower',function (Request $request){
+    if (Auth::user()->postFollowed($request->get('post'))){
+        return response()->json(['followed'=>true]);
+    }else{
+        return response()->json(['followed'=>false]);
+    }
+})->middleware('auth:api');
+Route::post('/post/follow',function (Request $request){
+    $post=\App\Post::find($request->get('post'));
+//    dd($post);
+    $followed=Auth::user()->postFollowThis($post->id);
+    if(count($followed['detached'])>0){//detached是啥
+        $post->decrement('followers_count');
+        return response()->json(['followed'=>false]);
+    }
+    $post->increment('followers_count');
+    return response()->json(['followed'=>true]);
+})->middleware('auth:api');
+
+
 Route::get('/user/followers/{id}','FollowController@index');
 Route::post('/user/follow','FollowController@follow');
 //vote
