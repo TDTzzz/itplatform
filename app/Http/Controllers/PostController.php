@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Topic;
 use App\Post;
-use App\Comment;
+use App\postComment;
 use Auth;
 use Illuminate\Http\Request;
 use Chenhua\MarkdownEditor\MarkdownEditor;
@@ -70,13 +70,23 @@ class PostController extends Controller
         })->toArray();
     }
 
+//    public function comment()
+//    {
+//        $model='App\Post';
+//        $comment=Comment::create([
+//            'commentable_id'=>request('model'),
+//            'commentable_type'=>$model,
+//            'user_id'=>Auth::user()->id,
+//            'body'=>request('body')
+//        ]);
+//        flash('评论成功');
+//        return back();
+//    }
     public function comment()
     {
-        $model='App\Post';
-        $comment=Comment::create([
-            'commentable_id'=>request('model'),
-            'commentable_type'=>$model,
+        postComment::create([
             'user_id'=>Auth::user()->id,
+            'post_id'=>request('post_id'),
             'body'=>request('body')
         ]);
         flash('评论成功');

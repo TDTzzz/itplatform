@@ -34,7 +34,7 @@
 
                                     @include('vendor.markdown.encode',['editors'=>['test-editormd']])
                                     </div>
-                                    <button class="btn btn-success pull-right" type="submit">发布问题</button>
+                                    <button class="btn btn-success pull-right" type="submit">发布文章</button>
                             </form>
                         </div>
                     </div>

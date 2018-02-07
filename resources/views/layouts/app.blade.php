@@ -104,24 +104,34 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    @can('manage_contents')
+                                        <li>
+                                            <a href="{{ url(config('administrator.uri')) }}">
+                                                <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
+                                                管理后台
+                                            </a>
+                                        </li>
+                                    @endcan
                                     <li>
                                         <a href="/user/{{Auth::user()->id}}">
                                             我的主页
                                         </a>
+                                    </li>
+                                    <li>
                                         <a href="/avatar">
                                             更换头像
                                         </a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             登出
                                         </a>
-
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
                                     </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
                                 </ul>
                             </li>
                         @endguest

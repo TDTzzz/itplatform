@@ -31,7 +31,6 @@
                                 <button class="button is-naked delete-button" style="text-decoration: none;color: #8c8c8c">删除</button>
                             </form>
                         @endif
-                        <comments type="question" model="{{$post->id}}" count="0"></comments>
                     </div>
                 </div>
             </div>
@@ -42,8 +41,6 @@
                         <div style="text-align: center;font-size: large">收藏者</div>
                     </div>
                     <div class="panel-body">
-                        {{--<a href="/question/{$post->id}/follow" class="btn btn-block">关注该问题</a>--}}
-                        {{--<question-follow style="margin-left: 36%;" question="{{$post->id}}"></question-follow>--}}
                         <post-follow style="margin-left: 36%;" post="{{$post->id}}"></post-follow>
                     </div>
                 </div>
@@ -76,7 +73,7 @@
                 @if(Auth::check())
                     <form action="/post/{{$post->id}}/comment" method="post">
                         {!! csrf_field() !!}
-                        <input type="hidden" name="model" value="{{$post->id}}">
+                        <input type="hidden" name="post_id" value="{{$post->id}}">
                         <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
                             <label for="body">描述</label>
                             {{--<script id="container" name="body" style="height:120px;" type="text/plain">--}}
@@ -90,7 +87,7 @@
                                 </span>
                                     @endif
                                 </div>
-                                <button class="btn btn-success pull-right" type="submit">提交答案</button>
+                                <button class="btn btn-success pull-right" type="submit">提交评论</button>
                                 </form>
                                     @else
                                 <a href="/login" class="btn btn-success btn-block">登录提交答案</a>
