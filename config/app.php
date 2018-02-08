@@ -171,6 +171,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Overtrue\LaravelUEditor\UEditorServiceProvider::class,
         Chenhua\MarkdownEditor\MarkdownEditorServiceProvider::class,
+        Frozennode\Administrator\AdministratorServiceProvider::class,
         /*
          * Application Service Providers...
          */
