@@ -22,7 +22,7 @@ class UserController extends Controller
          $filename = md5(time().Auth::user()->id).'.'.$file->getClientOriginalExtension();
          $file->move(public_path('avatars'), $filename);
 
-         Auth::user()->avatar = '/avatars/'.$filename;
+         Auth::user()->avatar =$filename;
          Auth::user()->save();
          return ['url' => Auth::user()->avatar];
      }
