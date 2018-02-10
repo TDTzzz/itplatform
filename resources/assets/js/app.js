@@ -23,6 +23,7 @@ Vue.component('send-message', require('./components/SendMessage.vue'));
 Vue.component('comments', require('./components/Comments.vue'));
 Vue.component('change-avatar', require('./components/Avatar.vue'));
 Vue.component('post-follow', require('./components/PostFollow.vue'));
+Vue.component('notice', require('./components/Notice.vue'));
 
 const app = new Vue({
     el: '#app'

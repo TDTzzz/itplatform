@@ -25,6 +25,12 @@
         @endif
     </script>
 </head>
+<style>
+    .active{
+        color: #ff841b;
+    }
+
+</style>
 <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top" style="padding-bottom: 20px;box-shadow: 5px 5px 5px #c9c9c9;">
@@ -95,8 +101,8 @@
                             <li class="col-md-4 col-xs-4"><a href="{{ route('login') }}">登录</a></li>
                             <li class="col-md-4 col-xs-4"><a href="{{ route('register') }}">注册</a></li>
                         @else
-                                <span class="glyphicon glyphicon-bell col-xs-3" style="cursor: pointer;margin-top: 15px;line-height: 24px;font-size: 25px" onclick="window.location.href='/notification'"></span>
-
+                                {{--<span class="glyphicon glyphicon-bell col-xs-3" style="cursor: pointer;margin-top: 15px;line-height: 24px;font-size: 25px;" onclick="window.location.href='/notification'"></span>--}}
+                                <notice user="{{Auth::user()->id}}"></notice>
                                 <li class="dropdown" style="float: right">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <img src="{{Auth::user()->avatar}}" width="35px" style="border-radius:50%" alt="{{ Auth::user()->name }}">

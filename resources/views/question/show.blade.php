@@ -41,7 +41,11 @@
                     </div>
                     <div class="panel-body">
                         {{--<a href="/question/{$question->id}/follow" class="btn btn-block">关注该问题</a>--}}
-                        <question-follow style="margin-left: 36%;" question="{{$question->id}}"></question-follow>
+                        @if(Auth::check())
+                            <question-follow style="margin-left: 36%;" question="{{$question->id}}"></question-follow>
+                        @else
+                            <a href="/login" class="btn btn-success btn-block">登录后可关注</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -129,7 +133,7 @@
                                 <div style="text-align: center;border-top: 1px solid #979797;padding-top: 5px;">这就是我</div>
                                 @endif
                             @else
-                                <a href="#" class="btn btn-success btn-block">请先登录</a>
+                                <a href="/login" class="btn btn-success btn-block">请先登录</a>
                             @endif
                         </div>
                     </div>

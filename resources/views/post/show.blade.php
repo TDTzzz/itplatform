@@ -41,7 +41,11 @@
                         <div style="text-align: center;font-size: large">收藏者</div>
                     </div>
                     <div class="panel-body">
-                        <post-follow style="margin-left: 36%;" post="{{$post->id}}"></post-follow>
+                        @if(Auth::check())
+                            <post-follow style="margin-left: 36%;" post="{{$post->id}}"></post-follow>
+                        @else
+                            <a href="/login" class="btn btn-success btn-block">登录后可收藏</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -130,7 +134,7 @@
                                 <div style="text-align: center;border-top: 1px solid #979797;padding-top: 5px;">这就是我</div>
                                     @endif
                                     @else
-                                <a href="#" class="btn btn-success btn-block">请先登录</a>
+                                <a href="/login" class="btn btn-success btn-block">请先登录</a>
                                     @endif
                                 </div>
                                 </div>

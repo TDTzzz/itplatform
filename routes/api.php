@@ -57,6 +57,12 @@ Route::post('/post/follow',function (Request $request){
     $post->increment('followers_count');
     return response()->json(['followed'=>true]);
 })->middleware('auth:api');
+//notice数
+Route::post('/countNotice',function (Request $request){
+    $notice=DB::table('notifications')->where('notifiable_id',$request->get('user'))->whereNull('read_at')->count();
+//    dd($notice);
+    return response()->json(['count'=>$notice]);
+})->middleware('auth:api');
 
 
 Route::get('/user/followers/{id}','FollowController@index');
@@ -70,3 +76,5 @@ Route::post('/message/store','MessageController@store');
 Route::get('answer/{id}/comments','CommentController@answer');
 Route::get('question/{id}/comments','CommentController@question');
 Route::post('comment','CommentController@store');
+
+

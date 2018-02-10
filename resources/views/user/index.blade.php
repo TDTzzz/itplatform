@@ -10,7 +10,7 @@
                 <p style="font-size: 30px;color: #000;">{{$user->name}}</p>
                 <p style="font-size: large">回答个数:{{$user->answers->count()}}</p>
                 <p style="font-size: large">提问个数:{{$user->questions->count()}}</p>
-                @if(Auth::user()->id!=$user->id)
+                @if(Auth::check()&&Auth::user()->id!=$user->id)
                     <user-follow user="{{$user->id}}"></user-follow>
                     <send-message user="{{$user->id}}"></send-message>
                 @else
