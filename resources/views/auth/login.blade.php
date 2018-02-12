@@ -234,8 +234,9 @@
 
     </div>
 
-    @include('layouts._footer')
 </div>
+@include('layouts._footer')
+
 
 <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}"></script>
@@ -243,6 +244,11 @@
 @yield('js')
 <script>
     $('#flash-overlay-modal').modal();
+</script>
+<script>
+    if($('#app').height()<window.screen.height-150){
+        $('#app').height(window.screen.height-150);
+    }
 </script>
 </body>
 <style>
