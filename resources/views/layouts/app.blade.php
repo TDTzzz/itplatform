@@ -33,7 +33,12 @@
 </style>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top" style="padding-bottom: 20px;box-shadow: 5px 5px 5px #c9c9c9;">
+        {{--box-shadow: 5px 5px 5px #c9c9c9;--}}
+        @guest
+        <nav class="navbar navbar-default navbar-static-top" style="margin-bottom:0;padding-bottom: 10px;">
+        @else
+        <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 20px;box-shadow: 5px 5px 5px #c9c9c9;padding-bottom: 10px;">
+        @endguest
             <div class="container">
                 <div class="navbar-header col-md-2">
 
@@ -159,6 +164,22 @@
                 </div>
             </div>
         </nav>
+        @guest
+        <div class="row" style="background: linear-gradient(to right, #009a61, rgb(1, 173, 140));height: 187px;margin-bottom: 20px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1 style="color: #fff;margin-top: 50px;font-weight: bold">在iT-PlatForm上，学习技能，解决问题</h1>
+                        <p style="color: #fff;font-size: large">每个月，我们帮助 0.001 万的开发者解决各种各样的技术问题。并助力他们在技术能力、职业生涯、影响力上获得提升。</p>
+                    </div>
+                    <div class="col-md-4 col-md-offset-1" style="margin-top: 50px;">
+                        <a class="btn btn-success btn-lg" href="{{ route('login') }}" style="background: #fff;color: #00cc66">免费注册</a>
+                        <a class="btn btn-success btn-lg" href="{{ route('register') }}" style="border: 1px solid #fff;">立即登陆</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endguest
         <div class="container">
             @include('flash::message')
             @yield('content')

@@ -4,7 +4,7 @@
     <div class="container">
 
         <div class="row" style="margin-top: 30px;">
-            <div class="col-md-9 col-md-offset-1">
+            <div class="col-md-9">
 
                 @foreach($posts as $post)
                     <div class="media" style="padding-bottom: 10px;border-bottom: 1px solid #979797;height: 60px">

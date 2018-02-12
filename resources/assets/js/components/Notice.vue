@@ -13,11 +13,11 @@
         props:['user'],
         data() {
             return {
-                count:0,
+                count:"",
                 isActive:false
             }
         },
-        mounted(){
+        created(){
             this.countNum(this.user)
         },
         methods:{
@@ -26,9 +26,7 @@
                     console.log(response.data)
                     if(response.data.count>0){
                         this.count=response.data.count;
-                        isActive:true;
-                    }else{
-                        this.count="";
+                        this.isActive=true;
                     }
                 })
             },

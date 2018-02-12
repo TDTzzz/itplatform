@@ -5,7 +5,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-1 topic-content">
+            <div class="col-md-9 topic-content">
                 <div class="panel panel-default">
                     <div class="panel-heading" >
                         <div style="font-size: 30px;">
@@ -52,7 +52,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-9 ">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         {{$question->answers->count()}}个答案

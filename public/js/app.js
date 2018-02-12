@@ -2676,11 +2676,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['user'],
     data: function data() {
         return {
-            count: 0,
+            count: "",
             isActive: false
         };
     },
-    mounted: function mounted() {
+    created: function created() {
         this.countNum(this.user);
     },
 
@@ -2692,9 +2692,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(response.data);
                 if (response.data.count > 0) {
                     _this.count = response.data.count;
-                    isActive: true;
-                } else {
-                    _this.count = "";
+                    _this.isActive = true;
                 }
             });
         }
