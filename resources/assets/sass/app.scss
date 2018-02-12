@@ -11,13 +11,16 @@
 @import "./../css/select2.min";
 @import "./../css/style";
 
+
+
 .footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100% ;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: #000;
+  background-color: #fff;
+  margin-top: 20px;
 
   .container {
     padding-right: 15px;
@@ -25,7 +28,7 @@
 
     p {
       margin: 19px 0;
-      color: #c1c1c1;
+      color: #6f6f6f;
 
       a {
         color: inherit;
@@ -33,4 +36,5 @@
     }
   }
 }
+
 @import "topic_body";

@@ -173,8 +173,8 @@
                         <p style="color: #fff;font-size: large">每个月，我们帮助 0.001 万的开发者解决各种各样的技术问题。并助力他们在技术能力、职业生涯、影响力上获得提升。</p>
                     </div>
                     <div class="col-md-4 col-md-offset-1" style="margin-top: 50px;">
-                        <a class="btn btn-success btn-lg" href="{{ route('login') }}" style="background: #fff;color: #00cc66">免费注册</a>
-                        <a class="btn btn-success btn-lg" href="{{ route('register') }}" style="border: 1px solid #fff;">立即登陆</a>
+                        <a class="btn btn-success btn-lg" href="{{ route('register') }}" style="background: #fff;color: #00cc66">免费注册</a>
+                        <a class="btn btn-success btn-lg" href="{{ route('login') }}" style="border: 1px solid #fff;">立即登陆</a>
                     </div>
                 </div>
             </div>
@@ -182,10 +182,8 @@
         @endguest
         <div class="container">
             @include('flash::message')
-            @yield('content')
         </div>
-
-        {{--@yield('content')--}}
+        @yield('content')
 
         @include('layouts._footer')
     </div>
