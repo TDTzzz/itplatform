@@ -165,14 +165,14 @@
             </div>
         </nav>
         @guest
-        <div class="row" style="background: linear-gradient(to right, #009a61, rgb(1, 173, 140));height: 187px;margin-bottom: 20px;">
+        <div class="row" style="background: linear-gradient(to right, #009a61, rgb(1, 173, 140));margin-bottom: 20px;padding-bottom: 20px">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-xs-12">
                         <h1 style="color: #fff;margin-top: 50px;font-weight: bold">在iT-PlatForm上，学习技能，解决问题</h1>
                         <p style="color: #fff;font-size: large">每个月，我们帮助 0.001 万的开发者解决各种各样的技术问题。并助力他们在技术能力、职业生涯、影响力上获得提升。</p>
                     </div>
-                    <div class="col-md-4 col-md-offset-1" style="margin-top: 50px;">
+                    <div class="col-md-4 col-md-offset-1 col-xs-8 col-xs-offset-2" style="margin-top: 50px;">
                         <a class="btn btn-success btn-lg" href="{{ route('register') }}" style="background: #fff;color: #00cc66">免费注册</a>
                         <a class="btn btn-success btn-lg" href="{{ route('login') }}" style="border: 1px solid #fff;">立即登陆</a>
                     </div>
@@ -196,8 +196,8 @@
         $('#flash-overlay-modal').modal();
     </script>
     <script>
-        if($('#app').height()<window.screen.height-165){
-            $('#app').height(window.screen.height-165);
+        if($('#app').height()<window.screen.height-150){
+            $('#app').height(window.screen.height-150);
         }
     </script>
 </body>
