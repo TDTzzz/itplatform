@@ -31,11 +31,7 @@
     }
 
 </style>
-<script>
-    if($('#app').height()<938){//1080-230
-        $('#app').height(window.screen.height-120);
-    }
-</script>
+
 <body>
     <div id="app">
         {{--box-shadow: 5px 5px 5px #c9c9c9;--}}
@@ -200,7 +196,23 @@
     <script>
         $('#flash-overlay-modal').modal();
     </script>
-
+    <script>
+//        var o=document.getElementById('app');
+//        if(o.offsetHeight<938){//1080-230
+//            console.log(o)
+//            console.log(o.offsetHeight)
+//            console.log(o.offsetHeight<938)
+//            $('#app').height(window.screen.height-120);
+//        }
+    </script>
+    <script>
+        $(document).ready(function(){
+        var o=document.getElementById('app');
+        if(o.offsetHeight<938) {//1080-230
+            $('#app').height(window.screen.height - 145);
+        }
+        })
+    </script>
 </body>
 <style>
     .top-label{
