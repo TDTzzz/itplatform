@@ -196,9 +196,7 @@
         $('#flash-overlay-modal').modal();
     </script>
     <script>
-        console.log($('#app').height())
-        console.log(window.screen.height)
-        if($('#app').height()<window.screen.height-300){//1080-230
+        if($('#app').height()<500){//1080-230
             $('#app').height(window.screen.height-120);
         }
     </script>
