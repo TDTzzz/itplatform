@@ -31,6 +31,11 @@
     }
 
 </style>
+<script>
+    if($('#app').height()<938){//1080-230
+        $('#app').height(window.screen.height-120);
+    }
+</script>
 <body>
     <div id="app">
         {{--box-shadow: 5px 5px 5px #c9c9c9;--}}
@@ -195,11 +200,7 @@
     <script>
         $('#flash-overlay-modal').modal();
     </script>
-    <script>
-        if($('#app').height()<500){//1080-230
-            $('#app').height(window.screen.height-120);
-        }
-    </script>
+
 </body>
 <style>
     .top-label{
