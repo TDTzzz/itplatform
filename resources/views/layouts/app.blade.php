@@ -169,7 +169,7 @@
         <div class="row" style="background: linear-gradient(to right, #009a61, rgb(1, 173, 140));margin-bottom: 20px;padding-bottom: 20px">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-7 col-xs-12">
+                    <div class="col-md-7 col-md-offset-0 col-xs-10 col-xs-offset-1">
                         <h1 style="color: #fff;margin-top: 50px;font-weight: bold">在iT-PlatForm上，学习技能，解决问题</h1>
                         <p style="color: #fff;font-size: large">每个月，我们帮助 0.001 万的开发者解决各种各样的技术问题。并助力他们在技术能力、职业生涯、影响力上获得提升。</p>
                     </div>
@@ -197,19 +197,10 @@
         $('#flash-overlay-modal').modal();
     </script>
     <script>
-//        var o=document.getElementById('app');
-//        if(o.offsetHeight<938){//1080-230
-//            console.log(o)
-//            console.log(o.offsetHeight)
-//            console.log(o.offsetHeight<938)
-//            $('#app').height(window.screen.height-120);
-//        }
-    </script>
-    <script>
+        //当内容高度小于屏幕高度时,改变
         $(document).ready(function(){
-        var o=document.getElementById('app');
-        if(o.offsetHeight<938) {//1080-230
-            $('#app').height(window.screen.height - 145);
+        if($('#app').height()<window.screen.height-120) {//1080-230
+            $('.footer').css('position','absolute');
         }
         })
     </script>
