@@ -15,19 +15,67 @@ class TopicsController extends Controller
 
     public function select(Request $request)
     {
-
+        $old_topic=$request->get('topic');
         $topics=Topic::select(['id','name'])
             ->where('name','like','%'.$request->get('topic').'%')->get();
-        $i=0;
-        $array=[];
-        foreach($topics as $k=>$topic){
-            foreach ($topic->questions as $k2=>$question){
-                $array[$i++]=$question;
+        if ($request->get('order')!='post'){
+            $i=0;
+            $array=[];
+            foreach($topics as $k=>$topic){
+                foreach ($topic->questions as $k2=>$question){
+                    $array[$i++]=$question;
+                }
             }
+            $array=collect($array);
+            $questions=$array->unique('title');
         }
-        $array=collect($array);
-        $questions=$array->unique('title');
-        return view('topic.index',compact('topics','questions'));
+        //文章
+        if ($request->get('order')!='question'){
+            $j=0;
+            $array=[];
+            foreach($topics as $k=>$topic){
+                foreach ($topic->posts as $k2=>$post){
+                    $array[$j++]=$post;
+                }
+            }
+            $array=collect($array);
+            $posts=$array->unique('title');
+        }
+        return view('topic.index',compact('old_topic','topics','questions','posts'));
+    }
+
+    public function selectQuestion(Request $request)
+    {
+        $old_topic=$request->old_topic;
+        $topics=Topic::select(['id','name'])
+            ->where('name','like','%'.$request->old_topic.'%')->get();
+
+        $questions=collect([]);
+        if ($request->order!='post'){
+            $i=0;
+            $array=[];
+            foreach($topics as $k=>$topic){
+                foreach ($topic->questions as $k2=>$question){
+                    $array[$i++]=$question;
+                }
+            }
+            $array=collect($array);
+            $questions=$array->unique('title');
+        }
+        //文章
+        $posts=collect([]);
+        if ($request->order!='question'){
+            $j=0;
+            $array=[];
+            foreach($topics as $k=>$topic){
+                foreach ($topic->posts as $k2=>$post){
+                    $array[$j++]=$post;
+                }
+            }
+            $array=collect($array);
+            $posts=$array->unique('title');
+        }
+        return view('topic.index',compact('old_topic','topics','questions','posts'));
     }
 
     public function show()

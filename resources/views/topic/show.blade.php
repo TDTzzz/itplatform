@@ -4,7 +4,7 @@
     <div class="container">
 
         <div class="row" style="margin: 30px 0 20px 0;padding-bottom: 10px;border-bottom: 1px solid #979797;">
-            <div class="col-md-9 col-md-offset-1">
+            <div class="col-md-9">
                 话题:
                     <span style="padding: 0 5px 0 5px;font-size: 25px;">
                         {{$topic->name}}
@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-9 col-md-offset-1">
+            <div class="col-md-9">
                 @foreach($questions as $question)
                     <div class="media" style="padding-bottom: 10px;border-bottom: 1px solid #979797;height: 60px">
                         <div class="media-left" style="@if($question->answers->count()===0) background-color: #ad3a37; @else background-color: #009a61; @endif color: #fff;height: 80%">

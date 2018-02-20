@@ -43,6 +43,8 @@ Route::get('user/{id}/followers','UserController@followUser');
 Route::get('user/{id}/followed','UserController@followed');
 //
 Route::post('topic/select','TopicsController@select');
+Route::get('topic/select/{order}/{old_topic}','TopicsController@selectQuestion');
+//Route::get('topic/select/post/{old_topic}','TopicsController@selectPost');
 Route::get('topic/{topic}','TopicsController@show');
 Route::post('question/select','QuestionController@select');
 //文章模块

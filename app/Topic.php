@@ -13,4 +13,8 @@ class Topic extends Model
         return $this->belongsToMany(Question::class)->withTimestamps();
     }
 
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class)->withTimestamps();
+    }
 }
