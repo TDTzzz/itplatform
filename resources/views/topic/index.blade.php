@@ -3,6 +3,16 @@
 @section('content')
 
     <div class="container">
+        <div class="row" style="margin: 10px 0 20px 0;">
+            <div class="col-md-9">
+                搜索到的话题:
+                @foreach($topics as $topic)
+                    <span style="padding: 0 5px 0 5px;font-size: 25px;color: #00cc66">
+                        {{$topic->name}}
+                    </span>
+                @endforeach
+            </div>
+        </div>
         <div class="row" style="margin-bottom: 20px;">
             <form action="/topic/select" method="post" style="margin-bottom: 20px;margin-left: 15px;">
                 {{csrf_field()}}
@@ -17,16 +27,6 @@
                 <li class="{{ active_class(( if_route_param('order','post') )) }}"><a href="/topic/select/post/{{$old_topic}}">文章</a></li>
             </ul>
         </div>
-        {{--<div class="row" style="margin: 30px 0 20px 0;padding-bottom: 10px;border-bottom: 1px solid #979797;">--}}
-            {{--<div class="col-md-9">--}}
-                {{--搜索到的话题:--}}
-                {{--@foreach($topics as $topic)--}}
-                    {{--<span style="padding: 0 5px 0 5px;font-size: 25px;">--}}
-                        {{--{{$topic->name}}--}}
-                    {{--</span>--}}
-                {{--@endforeach--}}
-            {{--</div>--}}
-        {{--</div>--}}
         <div class="row">
 
             <div class="col-md-9">
