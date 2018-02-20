@@ -104,7 +104,7 @@ return [
         'body' => [
             'title'    => '内容',
             'type' => 'textarea',
-            'limit' => 300, //optional, defaults to no limit
+            'limit' => 10000, //optional, defaults to no limit
             'height' => 130, //optional, defaults to 100
         ],
     ],
