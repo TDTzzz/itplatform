@@ -58,3 +58,6 @@ Route::post('post/{id}/comment','PostController@comment');
 Route::post('question/upload_image', 'QuestionController@uploadImage')->name('question.upload_image');
 Route::post('post/upload_image', 'PostController@uploadImage')->name('post.upload_image');
 
+//答题模块
+Route::get('/test','TestController@show');
+

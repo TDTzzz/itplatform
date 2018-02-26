@@ -2869,6 +2869,188 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Test.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['type', 'user'],
+    data: function data() {
+        return {
+            data: {},
+            i: 0,
+            hasData: {},
+            picked: "",
+            has_test: 0,
+            grade: 0,
+            correct: '',
+            record: '',
+            isActive: false,
+            picked2: ''
+        };
+    },
+    created: function created() {
+        var _this = this;
+
+        axios.get('/api/hasTest/' + this.type + '/' + this.user).then(function (response) {
+            _this.correct = response.data.correct;
+            if (response.data.has_test != 0) {
+                _this.has_test = 1;
+                _this.grade = response.data.grade;
+                _this.record = eval("(" + response.data.record + ")");
+            }
+        });
+    },
+    mounted: function mounted() {
+        var _this2 = this;
+
+        axios.post('/api/test', { type: this.type }).then(function (response) {
+            _this2.data = response.data.data;
+            _this2.data.forEach(function (e) {
+                e.choose_content = JSON.parse(e.choose_content);
+            });
+        });
+    },
+
+    methods: {
+        nextQuestion: function nextQuestion() {
+            //把当前第i个的选择题答案保存起来
+            this.hasData[this.i] = this.picked;
+            this.i += 1;
+            this.picked = '';
+        },
+        nextQuestion2: function nextQuestion2() {
+            //把当前第i个的选择题答案保存起来
+            this.i += 1;
+            this.picked2 = this.record[this.i];
+        },
+        lastQuestion2: function lastQuestion2() {
+            //把当前第i个的选择题答案保存起来
+            this.i -= 1;
+            this.picked2 = this.record[this.i];
+        },
+        submit: function submit() {
+            var _this3 = this;
+
+            this.hasData[this.i] = this.picked;
+            axios.post('/api/testSubmit', { type: this.type, data: this.hasData }).then(function (response) {
+                _this3.grade = response.data.grade;
+                _this3.record = eval("(" + response.data.record + ")");
+                _this3.correct = response.data.correct;
+                _this3.has_test = 1;
+                _this3.i = 0;
+            });
+        },
+        watchTest: function watchTest() {
+            this.has_test = 3;
+            this.picked2 = this.record[this.i];
+        },
+        boxActive: function boxActive(n, hasTest) {
+            this.i = n - 1;
+            if (hasTest == 1) {
+                this.picked2 = this.record[this.i];
+            }
+        },
+        watchReport: function watchReport() {
+            this.has_test = 1;
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/UserFollow.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -43117,6 +43299,435 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-9aa9c2c6\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Test.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _vm.has_test == 0
+        ? _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "panel panel-default" }, [
+              _c(
+                "div",
+                _vm._l(_vm.correct.length, function(n) {
+                  return _c(
+                    "div",
+                    {
+                      staticStyle: { display: "inline-block" },
+                      on: {
+                        click: function($event) {
+                          _vm.boxActive(n, 0)
+                        }
+                      }
+                    },
+                    [
+                      n - 1 == _vm.i
+                        ? _c("div", { staticClass: "box active" }, [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(n) +
+                                "\n                        "
+                            )
+                          ])
+                        : _c("div", { staticClass: "box" }, [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(n) +
+                                "\n                        "
+                            )
+                          ])
+                    ]
+                  )
+                })
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "panel-heading",
+                  staticStyle: { "font-size": "large" }
+                },
+                [
+                  _vm._v(
+                    "第" +
+                      _vm._s(_vm.i + 1) +
+                      "题:" +
+                      _vm._s(_vm.data[_vm.i].title)
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "panel-body" },
+                _vm._l(_vm.data[_vm.i].choose_content, function(value, key) {
+                  return _c("p", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.picked,
+                          expression: "picked"
+                        }
+                      ],
+                      attrs: { type: "radio", name: "optionsRadios" },
+                      domProps: {
+                        value: key,
+                        checked: _vm._q(_vm.picked, key)
+                      },
+                      on: {
+                        __c: function($event) {
+                          _vm.picked = key
+                        }
+                      }
+                    }),
+                    _vm._v(
+                      _vm._s(key) +
+                        ":" +
+                        _vm._s(value) +
+                        "\n                    "
+                    )
+                  ])
+                })
+              )
+            ]),
+            _vm._v(" "),
+            _vm.i > 0
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success btn-lg",
+                    attrs: { href: "" },
+                    on: {
+                      click: function($event) {
+                        _vm.i -= 1
+                      }
+                    }
+                  },
+                  [_vm._v("上一题")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.i < _vm.data.length - 1
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success btn-lg",
+                    attrs: { href: "" },
+                    on: { click: _vm.nextQuestion }
+                  },
+                  [_vm._v("下一题")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.i == _vm.data.length - 1
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success btn-lg",
+                    attrs: { href: "" },
+                    on: { click: _vm.submit }
+                  },
+                  [_vm._v("提交")]
+                )
+              : _vm._e()
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.has_test == 1
+        ? _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "panel panel-default" }, [
+              _c("div", { staticClass: "panel-heading" }, [
+                _vm._v("\n                    答题报告\n                ")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "panel-body" }, [
+                _c("p", [_vm._v("试卷类型:" + _vm._s(_vm.type))]),
+                _vm._v(" "),
+                _c("p", [_vm._v("正确题数:" + _vm._s(_vm.grade))]),
+                _vm._v(" "),
+                _c("p", [_vm._v("正确答案:" + _vm._s(_vm.correct))]),
+                _vm._v(" "),
+                _c("p", [_vm._v("我的答案:" + _vm._s(_vm.record))])
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success btn-lg",
+                  attrs: { href: "" },
+                  on: { click: _vm.watchTest }
+                },
+                [_vm._v("查看错题")]
+              )
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.has_test == 3
+        ? _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "panel panel-default" }, [
+              _c(
+                "div",
+                _vm._l(_vm.correct.length, function(n) {
+                  return _c(
+                    "div",
+                    {
+                      staticStyle: { display: "inline-block" },
+                      on: {
+                        click: function($event) {
+                          _vm.boxActive(n, 1)
+                        }
+                      }
+                    },
+                    [
+                      n - 1 == _vm.i
+                        ? _c("div", { staticClass: "box active" }, [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(n) +
+                                "\n                        "
+                            )
+                          ])
+                        : _c("div", { staticClass: "box" }, [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(n) +
+                                "\n                        "
+                            )
+                          ])
+                    ]
+                  )
+                })
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "panel-heading",
+                  staticStyle: { "font-size": "large" }
+                },
+                [
+                  _vm._v(
+                    "第" +
+                      _vm._s(_vm.i + 1) +
+                      "题:" +
+                      _vm._s(_vm.data[_vm.i].title)
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "panel-body" },
+                [
+                  _vm._l(_vm.data[_vm.i].choose_content, function(value, key) {
+                    return _c(
+                      "div",
+                      {
+                        staticStyle: {
+                          height: "50px",
+                          "line-height": "50px",
+                          margin: "10px 0"
+                        }
+                      },
+                      [
+                        key == _vm.correct[_vm.i]
+                          ? _c(
+                              "p",
+                              {
+                                staticStyle: {
+                                  border: "2px solid #6dc57b",
+                                  "border-radius": "20px",
+                                  "padding-left": "10px"
+                                }
+                              },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.picked2,
+                                      expression: "picked2"
+                                    }
+                                  ],
+                                  attrs: {
+                                    type: "radio",
+                                    name: "optionsRadios",
+                                    disabled: ""
+                                  },
+                                  domProps: {
+                                    value: key,
+                                    checked: _vm._q(_vm.picked2, key)
+                                  },
+                                  on: {
+                                    __c: function($event) {
+                                      _vm.picked2 = key
+                                    }
+                                  }
+                                }),
+                                _vm._v(
+                                  _vm._s(key) +
+                                    ":" +
+                                    _vm._s(value) +
+                                    "\n                        "
+                                )
+                              ]
+                            )
+                          : key == _vm.record[_vm.i] &&
+                            _vm.record[_vm.i] != _vm.correct[_vm.i]
+                            ? _c(
+                                "p",
+                                {
+                                  staticStyle: {
+                                    border: "2px solid #ff351a",
+                                    "border-radius": "20px",
+                                    "padding-left": "10px"
+                                  }
+                                },
+                                [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.picked2,
+                                        expression: "picked2"
+                                      }
+                                    ],
+                                    attrs: {
+                                      type: "radio",
+                                      name: "optionsRadios",
+                                      disabled: ""
+                                    },
+                                    domProps: {
+                                      value: key,
+                                      checked: _vm._q(_vm.picked2, key)
+                                    },
+                                    on: {
+                                      __c: function($event) {
+                                        _vm.picked2 = key
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(
+                                    _vm._s(key) +
+                                      ":" +
+                                      _vm._s(value) +
+                                      "\n                        "
+                                  )
+                                ]
+                              )
+                            : _c(
+                                "p",
+                                {
+                                  staticStyle: {
+                                    border: "2px solid #6f6f6f",
+                                    "border-radius": "20px",
+                                    "padding-left": "10px"
+                                  }
+                                },
+                                [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.picked2,
+                                        expression: "picked2"
+                                      }
+                                    ],
+                                    attrs: {
+                                      type: "radio",
+                                      name: "optionsRadios",
+                                      disabled: ""
+                                    },
+                                    domProps: {
+                                      value: key,
+                                      checked: _vm._q(_vm.picked2, key)
+                                    },
+                                    on: {
+                                      __c: function($event) {
+                                        _vm.picked2 = key
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(
+                                    _vm._s(key) +
+                                      ":" +
+                                      _vm._s(value) +
+                                      "\n                        "
+                                  )
+                                ]
+                              )
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("正确答案:" + _vm._s(_vm.correct[_vm.i]))]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("你的答案:" + _vm._s(_vm.record[_vm.i]))])
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _vm.i > 0
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success btn-lg",
+                    attrs: { href: "" },
+                    on: { click: _vm.lastQuestion2 }
+                  },
+                  [_vm._v("上一题")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.i < _vm.data.length - 1
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success btn-lg",
+                    attrs: { href: "" },
+                    on: { click: _vm.nextQuestion2 }
+                  },
+                  [_vm._v("下一题")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-success btn-lg pull-right",
+                attrs: { href: "" },
+                on: { click: _vm.watchReport }
+              },
+              [_vm._v("查看报告")]
+            )
+          ])
+        : _vm._e()
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-9aa9c2c6", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-e38b3f2a\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./node_modules/vue-image-crop-upload/upload-2.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -54182,6 +54793,7 @@ Vue.component('comments', __webpack_require__("./resources/assets/js/components/
 Vue.component('change-avatar', __webpack_require__("./resources/assets/js/components/Avatar.vue"));
 Vue.component('post-follow', __webpack_require__("./resources/assets/js/components/PostFollow.vue"));
 Vue.component('notice', __webpack_require__("./resources/assets/js/components/Notice.vue"));
+Vue.component('test', __webpack_require__("./resources/assets/js/components/Test.vue"));
 
 var app = new Vue({
   el: '#app'
@@ -54575,6 +55187,53 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-91eddab8", Component.options)
   } else {
     hotAPI.reload("data-v-91eddab8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Test.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Test.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-9aa9c2c6\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Test.vue")
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Test.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Test.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9aa9c2c6", Component.options)
+  } else {
+    hotAPI.reload("data-v-9aa9c2c6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

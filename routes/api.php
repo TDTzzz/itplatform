@@ -76,5 +76,27 @@ Route::post('/message/store','MessageController@store');
 Route::get('answer/{id}/comments','CommentController@answer');
 Route::get('question/{id}/comments','CommentController@question');
 Route::post('comment','CommentController@store');
-
-
+//Test
+//检测是否已经做过该测试
+Route::get('hasTest/{type}/{user}','TestController@hasTest');
+Route::post('test',function (Request $request){
+    $data=DB::table('test')->where('test_type',$request->get('type'))->get();
+    return response()->json(['data'=>$data]);
+//    return response()->json(['title'=>'php1','content'=>'content1']);
+});
+Route::post('testSubmit',function (Request $request){
+    $correct=DB::table('test')->where('test_type',$request->get('type'))->pluck('correct_choose');
+    $my_data=$request->get('data');
+    //对比对错
+    $choose_record=[];
+    $grade=0;
+    foreach ($correct as $k=>$v){
+        $choose_record[$k]=$my_data[$k];
+        if($v==$my_data[$k]){
+            $grade++;
+        }
+    }
+    \App\testRecord::create(['user_id'=>Auth::user()->id,'test_type'=>$request->get('type'),'choose_record'=>json_encode($choose_record),'grade'=>$grade]);
+    return response()->json(['correct'=>$correct,'record'=>json_encode($choose_record),'grade'=>$grade]);
+//    return response()->json(['title'=>'php1','content'=>'content1']);
+})->middleware('auth:api');
