@@ -71,7 +71,7 @@
                                     <a href="/totalTest" style="color: #636b6f;text-decoration: none">答题</a>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-xs-6" style="padding-top:10px ">
+                            <div class="col-md-3 col-xs-10" style="padding-top:10px ">
                                 <form action="/topic/select" method="post" style="margin:0px; padding:0px;">
                                     {{csrf_field()}}
                                     <div class="input-group">

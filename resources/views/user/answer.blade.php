@@ -6,9 +6,9 @@
     </div>
     @foreach($answers as $answer)
 
-        <div class="media" style="padding-bottom: 10px;border-bottom: 1px solid #979797;">
+        <div class="media" style="padding-bottom: 10px;border-bottom: 1px solid #979797;height:9%">
             <div class="media-left" style="">
-                <div style="@if($answer->question->answers->count()===0) background-color: #ad3a37; @else background-color: #009a61; @endif color: #fff;height: 55px;width: 48px;text-align: center;padding-top: 5px">
+                <div style="@if($answer->question->answers->count()===0) background-color: #ad3a37; @else background-color: #009a61; @endif  text-align:center;color: #fff;width: 50px;height: 80%;padding-top: 5px">
                     {{$answer->question->answers->count()}}
                     <p>回答</p>
                 </div>

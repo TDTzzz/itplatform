@@ -57,6 +57,22 @@ class UserController extends Controller
         $nav='3';
         return view('user.followers',compact('nav','user','followers'));
     }
+
+    public function post()
+    {
+        $user=User::find(request('id'));
+        $nav='4';
+        return view('user.post',compact('nav','user'));
+    }
+
+    public function followPost()
+    {
+        $user=User::find(request('id'));
+        $followPost=$user->postFollows;
+        $nav='5';
+        return view('user.followPost',compact('nav','user','followPost'));
+    }
+
     public function followed()
     {
         $user=User::find(request('id'));

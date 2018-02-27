@@ -42,9 +42,19 @@
                         <span class="small-num" >{{$user->questions->count()}}</span>
                     </a>
                 </li>
+                <li class="@if($nav==='4') user-active @else @endif">
+                    <a class="user-nav" href="/user/{{$user->id}}/post">我的文章
+                        <span class="small-num" >{{$user->posts->count()}}</span>
+                    </a>
+                </li>
                 <li class="@if($nav==='2') user-active @else @endif">
                     <a class="user-nav" href="/user/{{$user->id}}/followQuestion">关注的问题
                         <span class="small-num" >{{$user->follows->count()}}</span>
+                    </a>
+                </li>
+                <li class="@if($nav==='5') user-active @else @endif">
+                    <a class="user-nav" href="/user/{{$user->id}}/followPost">收藏的文章
+                        <span class="small-num" >{{$user->postFollows->count()}}</span>
                     </a>
                 </li>
                 <li class="@if($nav==='3') user-active @else @endif">

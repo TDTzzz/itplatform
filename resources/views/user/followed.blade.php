@@ -13,14 +13,6 @@
 
             </div>
             <div class="media-body" style="padding-left: 30px">
-                {{--<span class="media-heading" style="font-size: large">--}}
-                {{--{{$user->name}}--}}
-                {{--</span>--}}
-                {{--<div>--}}
-                {{--<div class="media-right" style="display: inline-block" style="padding: 0 10px 0 0">--}}
-                {{--<user-follow user="{{$user->id}}"></user-follow>--}}
-                {{--</div>--}}
-                {{--</div>--}}
                 <a href="/user/{{$follower->id}}" style="color: #979797;text-decoration:none;font-size: large">{{$follower->name}}</a>
                 <user-follow style="float: right;" user="{{$follower->id}}"></user-follow>
             </div>

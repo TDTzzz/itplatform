@@ -38,7 +38,9 @@ Route::post('avatar','UserController@changeAvatar');
 //
 Route::get('user/{id}','UserController@user');
 Route::get('user/{id}/question','UserController@question');
+Route::get('user/{id}/post','UserController@post');
 Route::get('user/{id}/followQuestion','UserController@followQuestion');
+Route::get('user/{id}/followPost','UserController@followPost');
 Route::get('user/{id}/followers','UserController@followUser');
 Route::get('user/{id}/followed','UserController@followed');
 //
