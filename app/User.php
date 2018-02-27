@@ -155,4 +155,14 @@ class User extends Authenticatable
 
         $this->attributes['password'] = $value;
     }
+
+    public function hasTest($type)
+    {
+        $data=testRecord::where(['test_type'=>$type,'user_id'=>\Auth::user()->id])->first();
+        if ($data!=null){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

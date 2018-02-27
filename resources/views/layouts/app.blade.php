@@ -58,14 +58,17 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <div class="col-md-7" style="padding: 0">
+                    <div class="col-md-8" style="padding: 0">
                         <ul class="nav navbar-nav" >
                             <div class="col-md-3" style="height: 50px">
-                                <div style="display: inline-block;text-align: center;line-height: 52px;font-size: large;font-weight: bold;width: 40%">
+                                <div style="display: inline-block;text-align: center;line-height: 52px;font-size: large;font-weight: bold;width: 30%">
                                     <a href="/" style="color: #636b6f;text-decoration: none">问题</a>
                                 </div>
-                                <div style="display: inline-block;text-align: center;line-height: 52px;font-size: large;font-weight: bold;width: 40%">
+                                <div style="display: inline-block;text-align: center;line-height: 52px;font-size: large;font-weight: bold;width: 30%">
                                     <a href="/post" style="color: #636b6f;text-decoration: none">文章</a>
+                                </div>
+                                <div style="display: inline-block;text-align: center;line-height: 52px;font-size: large;font-weight: bold;width: 30%">
+                                    <a href="/post" style="color: #636b6f;text-decoration: none">答题</a>
                                 </div>
                             </div>
                             <div class="col-md-4 col-xs-6" style="padding-top:10px ">
@@ -100,7 +103,7 @@
 
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right col-md-3" style="">
+                    <ul class="nav navbar-nav navbar-right col-md-2" style="">
                         <!-- Authentication Links -->
                         @guest
                             <li class="col-md-4 col-xs-4"><a href="{{ route('login') }}">登录</a></li>

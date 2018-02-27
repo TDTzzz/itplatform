@@ -59,5 +59,7 @@ Route::post('question/upload_image', 'QuestionController@uploadImage')->name('qu
 Route::post('post/upload_image', 'PostController@uploadImage')->name('post.upload_image');
 
 //答题模块
-Route::get('/test','TestController@show');
+Route::get('/test/{type}','TestController@show');
+Route::get('/totalTest','TestController@totalShow');
+
 

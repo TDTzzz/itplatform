@@ -6,30 +6,31 @@ use App\Test;
 use App\testRecord;
 use Illuminate\Http\Request;
 
+//答题控制器
 class TestController extends Controller
 {
-    //答题控制器
-    public function show()
+    //显示全部类型的测试题
+    public function totalShow()
     {
-//        Test::create(['title'=>'1','choose_type'=>'1','choose_content'=>'{"A":"选项a","B":"选项B"}','grade'=>'1','test_type'=>'1']);
-        $data=Test::where('test_type','php')->get();
-        //把choose_content的json数据转换成数组
+        $data=Test::pluck('test_type')->unique();
+        //检查这些类型的
 //        foreach ($data as $k=>$v){
-//            $data[$k]['choose_content']=json_decode($v['choose_content'], true);
+//            $arr[$k]=testRecord::where(['test_type'=>$v,'user_id'=>\Auth::user()->id])->first();
+//            if ($arr[$k]!=null){
+//                $data[$k]['has_test']=1;
+//            }else{
+//                $data[$k]['has_test']=0;
+//            }
 //        }
-//        $data=$data->toArray();
-//        $content['test']=$data;
-//        foreach ($data as $k=>$v){
-//            $fname[$k]='php'.$k;
-////            $data['php'.$k]=$v;
-//        }
-//        $data=array_combine($fname,$data);
-//        dd($content);
-//        $data[0]=['title'=>'title1','name'=>'name1'];
-//        $data[1]=['title'=>'title2','name'=>'name2'];
+//        dd($data);
+        return view('test.index',compact('data'));
+    }
 
-        return view('test.index');
-//        dd(\GuzzleHttp\json_decode($data['choose_content']));
+    public function show(Request $request)
+    {
+        $type=$request->type;
+
+        return view('test.show',compact('type'));
     }
 
     public function getTest(Request $request)
