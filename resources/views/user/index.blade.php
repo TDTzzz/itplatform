@@ -3,10 +3,10 @@
 @section('content')
     <div class="container" style="margin-bottom: 30px;">
         <div class="row">
-            <div class="col-md-2 col-sm-3 col-xs-3">
-                <img width="200px" style="border-radius:50%" src="{{$user->avatar}}" alt="{{$user->name}}">
+            <div class="col-md-2 col-sm-3 col-xs-6">
+                <img width="100%" style="border-radius:50%" src="{{$user->avatar}}" alt="{{$user->name}}">
             </div>
-            <div class="col-md-5 col-sm-9 col-xs-9 col-md-offset-2">
+            <div class="col-md-5 col-sm-9 col-xs-6 col-md-offset-2">
                 <p style="font-size: 30px;color: #000;">{{$user->name}}</p>
                 <p style="font-size: large">回答个数:{{$user->answers->count()}}</p>
                 <p style="font-size: large">提问个数:{{$user->questions->count()}}</p>
@@ -22,11 +22,11 @@
     <div class="row" style="background-color: #fff;padding-top: 20px;">
         <div class="col-md-2 col-md-offset-2">
             <div class="row" style="border-bottom: 1px solid #eee;margin-bottom: 20px;" >
-                <div class="col-md-6" style="border-right: 1px solid #eee;cursor:pointer;" onclick="window.location.href='/user/{{$user->id}}/followers'">
+                <div class="col-md-6 col-xs-6" style="border-right: 1px solid #eee;cursor:pointer;" onclick="window.location.href='/user/{{$user->id}}/followers'">
                     关注了
                     <p style="color: #000;font-weight: bold;font-size: large">{{$user->followers->count()}}人</p>
                 </div>
-                <div class="col-md-6" style="cursor:pointer;" onclick="window.location.href='/user/{{$user->id}}/followed'">
+                <div class="col-md-6 col-xs-6" style="cursor:pointer;" onclick="window.location.href='/user/{{$user->id}}/followed'">
                     粉丝
                     <p style="color: #000;font-weight: bold;font-size: large">{{$user->followersUser->count()}}人</p>
                 </div>
@@ -54,7 +54,7 @@
                 </li>
                 <li class="@if($nav==='5') user-active @else @endif">
                     <a class="user-nav" href="/user/{{$user->id}}/followPost">收藏的文章
-                        <span class="small-num" >{{$user->postFollows->count()}}</span>
+                        <span class="small-num" >{{$user->follows->count()}}</span>
                     </a>
                 </li>
                 <li class="@if($nav==='3') user-active @else @endif">
@@ -64,7 +64,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
             @yield('nav-content')
         </div>
     </div>
