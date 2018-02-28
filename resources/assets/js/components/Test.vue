@@ -76,6 +76,7 @@
 
                         <p>正确答案:{{correct[i]}}</p>
                         <p>你的答案:{{record[i]}}</p>
+                        <p>解析:<span v-html="data[i].parsing"></span></p>
                     </div>
                 </div>
                 <button href="" class="btn btn-success btn-lg" v-if="i>0" v-on:click="lastQuestion2">上一题</button>

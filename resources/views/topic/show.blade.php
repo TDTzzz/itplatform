@@ -14,8 +14,8 @@
         <div class="row">
             <div class="col-md-9">
                 @foreach($questions as $question)
-                    <div class="media" style="padding-bottom: 10px;border-bottom: 1px solid #979797;height: 60px">
-                        <div class="media-left" style="@if($question->answers->count()===0) background-color: #ad3a37; @else background-color: #009a61; @endif color: #fff;height: 80%">
+                    <div class="media" style="padding-bottom: 10px;border-bottom: 1px solid #979797;height: 9%">
+                        <div class="media-left" style="@if($question->answers->count()===0) background-color: #ad3a37; @else background-color: #009a61; @endif color: #fff;height: 80%;padding:0 5px">
                             {{--<a href="">--}}
                             {{--<img style="width:80px;height: 80px; border-radius:50%; overflow:hidden;" src="{{$question->user->avatar}}" alt="{{$question->user->name}}">--}}
                             {{--</a>--}}

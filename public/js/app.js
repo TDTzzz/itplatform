@@ -2964,6 +2964,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['type', 'user'],
@@ -43672,7 +43673,14 @@ var render = function() {
                   _vm._v(" "),
                   _c("p", [_vm._v("正确答案:" + _vm._s(_vm.correct[_vm.i]))]),
                   _vm._v(" "),
-                  _c("p", [_vm._v("你的答案:" + _vm._s(_vm.record[_vm.i]))])
+                  _c("p", [_vm._v("你的答案:" + _vm._s(_vm.record[_vm.i]))]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v("解析:"),
+                    _c("span", {
+                      domProps: { innerHTML: _vm._s(_vm.data[_vm.i].parsing) }
+                    })
+                  ])
                 ],
                 2
               )
