@@ -59,6 +59,17 @@ class PostController extends Controller
     }
     public function normalizeTopic(array $topics)
     {
+        //先判断获得来的非数字topic是否有对应的id
+        foreach ($topics as $k=>$v){
+            if (!is_numeric($v)){
+                //不是数字，则查找表里是否有该topic对应的id
+                $topic_id=Topic::where('name',$v)->value('id');
+                if (!empty($topic_id)){
+                    //如果id不为空，则该topic已存在，转化成id保存
+                    $topics[$k]=$topic_id;
+                }
+            }
+        }
         return collect($topics)->map(function ($topic){
             //判断是否是数字，已存在的topic会已id形式记录。未存在的是name，要是name是数字就无奈了
             if (is_numeric($topic)){
