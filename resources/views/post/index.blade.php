@@ -36,9 +36,9 @@
 
                     </div>
                 @endforeach
-                {{--<div style="text-align: center;padding-top: 20px;">--}}
-                    {{--{{ $questions->links() }}--}}
-                {{--</div>--}}
+                <div style="text-align: center;padding-top: 20px;">
+                    {{ $posts->links() }}
+                </div>
 
             </div>
 
