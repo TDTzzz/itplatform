@@ -11,6 +11,9 @@
 |
 */
 
+//测试用
+Route::any('/wechatapp','HomeController@test');
+
 Route::get('/','QuestionController@index');
 
 Auth::routes();
